@@ -1,0 +1,41 @@
+/*import font Roboto*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+html{
+	/*font:white;
+	background-image: url("../images/bg-5-full.jpg");
+	background-color: rgba(0,255,0,0.1);*/
+}
+body{
+	max-width: 100%;
+	margin: auto;
+	font-family: 'Roboto', Arial, sans-serif;	
+}
+
+.content{
+	min-height: 350px;
+	/*margin-top: 150px;*/
+}
+
+.self-clear{
+	clear: both;
+	content: "";
+}
+
+.lines{
+	margin: 10px 10%;
+	border: 1px #e2d1d1 solid;
+}
+
+h2{
+	color:#52125a;
+	font-size: 3em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 500px){
+	.lines{
+		margin:10px 0;
+	}
+}

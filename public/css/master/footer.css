@@ -1,0 +1,91 @@
+#footer{
+	display:grid;
+	padding: 0;
+	border-top: solid 1px #e2d1d1;
+	position: relative;
+	grid-template-columns: 85% 15%;
+	padding-bottom: 1px;
+}
+#footer p{
+	margin:0;
+	padding:10px;
+	font-size: 1em;
+}
+#footer_left{
+	grid-column:1;
+	display: grid;
+    grid-template-columns: 20% 80%;
+}
+#footer_left p{
+	padding:5px 25px;
+}
+#footer_right{
+	grid-column:2;
+	padding: 0 15px;
+	text-align: right;
+}
+#footer_right h4{
+	padding:0 12px;
+}
+#footer_contactus{
+	grid-column:1;
+	margin: 0 auto;
+	padding: 0 30px 0 15px;
+}
+#footer_contactus p{
+	margin:0 ;
+	padding: 0 ;
+}
+#footer_malls{
+	grid-column:2;
+}
+#upper_row_malls{
+	display:grid;
+	grid-template-columns: repeat(3,1fr);
+}
+#lower_row_malls{
+	display:grid;
+	grid-template-columns: repeat(2,1fr);
+}
+.float_left p{	
+	word-wrap: break-word;
+	border: 1px solid #9613a5;
+    text-align: center;
+	color: black;
+	background-color: #e2d1d1;
+	/*opacity: 0.5;*/
+}
+.float_left .img{
+	height: 90px;
+}
+.float_left:hover .img{
+	opacity:0.7;
+}
+#plaza_indonesia .img{
+	background-image: url("../../images/malls/plaza_indonesia.jpg");
+	background-size: 100%;
+}
+#grand_indonesia .img{
+	background-image: url("../../images/malls/grand_indonesia.jpg");
+	background-size: 100%;
+}
+#central_park .img{
+	background-image: url("../../images/malls/central_park.jpg");
+	background-size: 100%;
+}
+#baywalk .img{
+	background-image: url("../../images/malls/baywalk.jpg");
+	background-size: 100%;
+}
+#kasablanka .img{
+	background-image: url("../../images/malls/kasablanka4.jpg");
+	background-size: 100%;
+}
+
+#zara{
+	width: 100px;
+	margin-bottom: 12px;
+}
+#uniqlo{
+	height: 40px;
+}
