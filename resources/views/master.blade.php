@@ -26,7 +26,7 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="/">Home</a></li>
-			<li><a href="products.html">Products</a></li>
+			<li><a href="/promo">Manage Promo</a></li>
 			<li><a href="order.html">Order</a></li>
 			<li>
 				<a>More Information</a>
@@ -50,7 +50,6 @@
 				<p>021 456 8790</p>
             </div>
             <div id="footer_malls">
-                <div id="upper_row_malls">
                     <a id="plaza_indonesia" href="http://www.plazaindonesia.com/" target="_blank">
                         <div class="float_left" >			
                             <p>Plaza Indonesia</p>
@@ -69,8 +68,6 @@
                             <div class="img" ></div>
                         </div>
                     </a>
-                </div>
-                <div id="lower_row_malls">
                     <a id="baywalk" href="http://baywalkmall.com/" target="_blank">
                         <div class="float_left">
                             <p>Baywalk Pluit Mall</p>
@@ -83,7 +80,6 @@
                             <div class="img" ></div>
                         </div>
                     </a>
-                </div>
             </div>
 		</div>
 		<div id="footer_right">

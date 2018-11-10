@@ -9,7 +9,7 @@ html{
 body{
 	max-width: 100%;
 	margin: auto;
-	font-family: 'Roboto', Arial, sans-serif;	
+	font-family: 'Roboto', Arial, sans-serif;
 }
 
 .content{
@@ -38,4 +38,21 @@ h2{
 	.lines{
 		margin:10px 0;
 	}
+}
+
+table th, table td{
+	border: 1px solid black;
+}
+main{
+	padding: 50px 25px;
+	min-height: 200px;
+}
+form{
+	text-align:center;
+}
+input{
+	width:75%;
+}
+table{
+	width:100%;
 }

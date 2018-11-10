@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/promo', 'PromoController@redirect');
+Route::get('/insertPromo', 'PromoController@insert');
+Route::post('/insertNewPromo', 'PromoController@insertNew');
+Route::get('/updatePromo/{id}', 'PromoController@redirectUpdate');
+Route::post('/updateCurrentPromo/{id}', 'PromoController@updateCurrent');
+Route::get('/removePromo/{id}', 'PromoController@remove');
