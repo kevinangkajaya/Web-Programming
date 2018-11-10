@@ -21,6 +21,8 @@
         <!-- <img src="{{asset('images/logo.png')}}"> -->
         <h1 id="titleLogo">D’Online Clothes</h1>
         <p id="welcomeHello">Hello, guest!</p>
+            <p id="welcomeHello">{{$mytime}}</p>
+
 	</div>
 
 	<div id="navigation">

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Carbon\carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('master', function ($view) {
+            $mytime = Carbon::now()->format('d M Y');
+            $view->with('mytime', $mytime);
+        });
     }
 
     /**
