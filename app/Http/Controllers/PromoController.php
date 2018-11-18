@@ -45,7 +45,8 @@ class PromoController extends Controller
         }
     }
     public function redirectUpdate($id){
-        return view('Promo/update',compact('id'));
+        $promo = Promo::where('id',$id)->first();
+        return view('Promo/update',compact('promo'));
     }
     public function updateCurrent(Request $req,$id){
         $validate = Validator::make($req->all(),[
@@ -59,7 +60,7 @@ class PromoController extends Controller
             'startDate' => array('required','date'),
             'endDate' => array('required','date')
         ],$message = [
-            'regex' => ':attribute must be alphabets or dash only'
+            'regex' => 'The :attribute must be alphabets or dash only'
         ]);
 
         if($validate->fails() ){

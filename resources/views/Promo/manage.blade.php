@@ -1,5 +1,6 @@
 @extends('master')
 @section('title','Manage Promo')
+@section('bigTitle','Manage Promo')
 
 @section('content')
     <div>

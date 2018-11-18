@@ -15,6 +15,20 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/cloth', 'ClothController@redirect');
+Route::get('/insertCloth', 'ClothController@insert');
+Route::post('/insertNewCloth', 'ClothController@insertNew');
+Route::get('/updateCloth/{id}', 'ClothController@redirectUpdate');
+Route::post('/updateCurrentCloth/{id}', 'ClothController@updateCurrent');
+Route::get('/removeCloth/{id}', 'ClothController@remove');
+
+Route::get('/category', 'CategoryController@redirect');
+Route::get('/insertCategory', 'CategoryController@insert');
+Route::post('/insertNewCategory', 'CategoryController@insertNew');
+Route::get('/updateCategory/{id}', 'CategoryController@redirectUpdate');
+Route::post('/updateCurrentCategory/{id}', 'CategoryController@updateCurrent');
+Route::get('/removeCategory/{id}', 'CategoryController@remove');
+
 Route::get('/promo', 'PromoController@redirect');
 Route::get('/insertPromo', 'PromoController@insert');
 Route::post('/insertNewPromo', 'PromoController@insertNew');

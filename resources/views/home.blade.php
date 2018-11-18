@@ -1,5 +1,6 @@
 @extends('master')
 @section('title','D’Online Clothes')
+@section('bigTitle','Home')
 
 @section('head')
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">

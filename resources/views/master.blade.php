@@ -28,6 +28,8 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="/">Home</a></li>
+            <li><a href="/cloth">Manage Clothes</a></li>
+            <li><a href="/category">Manage Categories</a></li>
 			<li><a href="/promo">Manage Promo</a></li>
 			<li><a href="order.html">Order</a></li>
 			<li>
@@ -39,6 +41,8 @@
 			</li>
 		</ul>
 	</div>
+
+    <h1>@yield('bigTitle')</h1>
 
     <main>
         @yield('content')
