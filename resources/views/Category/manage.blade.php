@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <div style="text-align:center;">
+        <div class="insert">
             <a href="/insertCategory"><button>Insert New Category</button></a>
         </div>
     <table>

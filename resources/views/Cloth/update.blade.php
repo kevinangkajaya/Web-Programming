@@ -10,27 +10,29 @@
         @endforeach
     </div>
 
-    <form method="POST" action="/updateCurrentCategory/{{$category->id}}" enctype="multipart/form-data">
+    <form method="POST" action="/updateCurrentCloth/{{$cloth->id}}" enctype="multipart/form-data">
         {{csrf_field()}}
-        <p class="labels" Cloth Category></p>
+        <p class="labels">Cloth Category</p>
         <select name="clothCategory">
             <option value="">Select Category</option>
             @foreach($category as $c)
-                <option value="{{$c}}">{{$c}}</option>
+                <option value="{{$c->id}}">{{$c->categoryName}}</option>
             @endforeach
         </select> <br>
         <p class="labels">Cloth Name </p>
-        <input type="text" name="clothName" value="{{$category->clothName}}"><br>
-        p class="labels">Cloth Price </p>
-        <input type="text" name="clothPrice" value="{{$category->clothPrice}}" placeholder="Cloth Price"><br>
+        <input type="text" name="clothName" value="{{$cloth->clothName}}"><br>
+        <p class="labels">Cloth Price </p>
+        <input type="text" name="clothPrice" value="{{$cloth->clothPrice}}" placeholder="Cloth Price"><br>
         <p class="labels">Cloth Description </p>
-        <input type="text" name="clothDescription" value="{{$category->clothDescription}}" placeholder="Cloth Description"><br>
+        <textarea rows="3" type="text" name="clothDescription" placeholder="Cloth Description">{{$cloth->clothDescription}}</textarea><br>
         <p class="labels">Cloth Stock </p>
-        <input type="text" name="clothStock" value="{{$category->clothStock}}" placeholder="Cloth Stock"><br>
-        <input type="file" name="clothImage"><br><input type="submit" value="Update">
+        <input type="text" name="clothStock" value="{{$cloth->clothStock}}" placeholder="Cloth Stock"><br>
+        <p class="labels">Cloth Image </p>
+        <input type="file" name="clothImage"><br>
+        <input type="submit" value="Update">
     </form>
 
     <script>
-        $('select[name="clothCategory"]').val('{{$category->clothCategory}}');
+        $('select[name="clothCategory"]').val('{{$cloth->categoryID}}');
     </script>
 @endsection

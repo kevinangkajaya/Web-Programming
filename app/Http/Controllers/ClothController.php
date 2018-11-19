@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Cloth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClothController extends Controller
 {
-    public function redirect(){
-        $cloth = Cloth::all();
+    public function redirect(Request $request){
+        $query = $request->get('name');
+        $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->paginate(8);
+        // $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->with('categories')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->with('categories')->paginate(8);
+        $cloth->appends($request->only('name'));
+
         return view('Cloth/manage',compact('cloth'));
     }
     public function insert(){        
@@ -22,7 +28,7 @@ class ClothController extends Controller
             'clothPrice' => array('required','integer','min:10000'),
             'clothDescription' => 'required',
             'clothStock' => array('required','integer','min:1'),
-            'clothImage' => array('required','image','size:5000')
+            'clothImage' => array('required','image','max:5000')
         ]);
 
         if($validate->fails() ){
@@ -32,7 +38,7 @@ class ClothController extends Controller
             $image->move('images/clothing', $image->getClientOriginalname());
 
             $newCloth = new Cloth();
-            $newCloth->clothCategory = $req->clothCategory;
+            $newCloth->categoryID = $req->clothCategory;
             $newCloth->clothName = $req->clothName;
             $newCloth->clothPrice = $req->clothPrice;
             $newCloth->clothDescription = $req->clothDescription;
@@ -54,7 +60,7 @@ class ClothController extends Controller
             'clothPrice' => array('required','integer','min:10000'),
             'clothDescription' => 'required',
             'clothStock' => array('required','integer','min:1'),
-            'clothImage' => array('required','image','size:5000')
+            'clothImage' => array('required','image','max:5000')
         ]);
 
         if($validate->fails() ){
@@ -65,7 +71,7 @@ class ClothController extends Controller
             $image = $req->clothImage;
             $image->move('images/clothing', $image->getClientOriginalname());
 
-            $cloth->clothCategory = $req->clothCategory;
+            $cloth->categoryID = $req->clothCategory;
             $cloth->clothName = $req->clothName;
             $cloth->clothPrice = $req->clothPrice;
             $cloth->clothDescription = $req->clothDescription;
@@ -80,13 +86,5 @@ class ClothController extends Controller
         $cloth = Cloth::where('id',$id)->first();
         $cloth->delete();
         return redirect('/cloth');
-    }
-    public function search(Request $request){
-        $query = $request->get('name');
-        $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->paginate(8);
-        // $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->with('categories')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->with('categories')->paginate(8);
-        $cloth->appends($request->only('name'));
-
-        return view('Cloth/manage',compact('cloth'));
     }
 }

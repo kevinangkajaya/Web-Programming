@@ -24,5 +24,23 @@ class CategorySeeder extends Seeder
             'categoryAge' => 12,
             'created_at' => Carbon::now()->toDateTimeString()
         ]);
+        DB::table('categories')->insert([
+            'categoryName' => 'Adult Male',
+            'categoryGender' => 'Male',
+            'categoryAge' => 21,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
+        DB::table('categories')->insert([
+            'categoryName' => 'Teen Girls',
+            'categoryGender' => 'Female',
+            'categoryAge' => 16,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
+        DB::table('categories')->insert([
+            'categoryName' => 'Women',
+            'categoryGender' => 'Female',
+            'categoryAge' => 21,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
     }
 }

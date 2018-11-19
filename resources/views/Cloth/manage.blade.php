@@ -4,28 +4,37 @@
 
 @section('content')
     <style>
+        #clothesGrid{
+            display:grid;
+            grid-template-columns: repeat(4,25%);
+            grid-gap:5px;
+            padding-top:10px;
+        }
         .clothes-display{
             border-style: solid;
-            border-width: 2px;
-            margin: 10px;
-            display: inline-block;
+            padding-top:10px;
+        }
+        img{
+            width:95%;
         }
     </style>
 
     <div>
-        <div style="text-align:center;">
+        <div class="insert">
             <a href="/insertCloth"><button>Insert New Cloth</button></a>
         </div>
         
-        <form action="/searchCloth" method="GET">
+        <form action="/cloth" method="GET">
+            <p class="labels">Search </p>
             <input text="text" placeholder="Name or Description" name="name">
             <button type="submit" >Submit</button>
         </form>
 
+        <div id="clothesGrid">
         @if(count($cloth)!=0)
             @foreach($cloth as $p)
                 <div class="clothes-display" style="text-align:center;">
-                    <img src="/images/clothing/{{$p->clothDirectory}}" width="200" height="200">
+                    <img src="/images/clothing/{{$p->clothDirectory}}">
                     <div style="text-align:center;">
                         <h3>{{$p->clothName}}</h3>
                         <p>Category: {{$p->categories->categoryName}}</p>
@@ -41,7 +50,8 @@
                 </div>
             @endforeach
         @endif
+        </div>
 
-        <!-- {{$cloth->render()}} -->
+        {{$cloth->render()}}
     </div>
 @endsection

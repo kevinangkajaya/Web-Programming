@@ -60,7 +60,7 @@ form, .errors{
 table{
 	width:100%;
 }
-input,select{
+input,select, textarea{
 	margin-bottom: 12px;
 	width:100%;
 }
@@ -71,4 +71,8 @@ h1{
 	color:#52125a;
 	font-size: 3em;
 	text-align:center;
+}
+.insert{
+	text-align:center;
+	margin-bottom: 20px;
 }
