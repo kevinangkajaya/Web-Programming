@@ -10,18 +10,24 @@
         @endforeach
     </div>
 
-    <form method="POST" action="/insertNewCloth">
+    <form method="POST" action="/insertNewCloth" enctype="multipart/form-data">
         {{csrf_field()}}
+        <p class="labels" Cloth Category></p>
+        <select name="clothCategory">
+            <option value="">Select Category</option>
+            @foreach($category as $c)
+                <option value="{{$c}}">{{$c}}</option>
+            @endforeach
+        </select> <br>
         <p class="labels">Cloth Name </p>
         <input type="text" name="clothName" placeholder="Cloth Name"><br>
-        <p class="labels">Cloth Gender </p>
-        <select name="categoryGender">
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select> <br>
-        <p class="labels">Category Age </p>
-        <input type="text" name="categoryAge" placeholder="Category Age"><br>
+        <p class="labels">Cloth Price </p>
+        <input type="text" name="clothPrice" placeholder="Cloth Price"><br>
+        <p class="labels">Cloth Description </p>
+        <input type="text" name="clothDescription" placeholder="Cloth Description"><br>
+        <p class="labels">Cloth Stock </p>
+        <input type="text" name="clothStock" placeholder="Cloth Stock"><br>
+        <input type="file" name="clothImage"><br>
         <input type="submit" value="Insert">
     </form>
 @endsection

@@ -13,7 +13,6 @@ class CategoryController extends Controller
         return view('Category/manage',compact('category'));
     }
     public function insert(){
-        $category = Category::all();
         return view('Category/insert');
     }
     public function insertNew(Request $req){

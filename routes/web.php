@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/cloth');
 });
 
 Route::get('/cloth', 'ClothController@redirect');
@@ -21,6 +21,7 @@ Route::post('/insertNewCloth', 'ClothController@insertNew');
 Route::get('/updateCloth/{id}', 'ClothController@redirectUpdate');
 Route::post('/updateCurrentCloth/{id}', 'ClothController@updateCurrent');
 Route::get('/removeCloth/{id}', 'ClothController@remove');
+Route::get('/searchCloth','ClothController@search');
 
 Route::get('/category', 'CategoryController@redirect');
 Route::get('/insertCategory', 'CategoryController@insert');

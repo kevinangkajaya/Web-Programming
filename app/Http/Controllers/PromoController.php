@@ -13,7 +13,6 @@ class PromoController extends Controller
         return view('Promo/manage',compact('promo'));
     }
     public function insert(){
-        $promo = Promo::all();
         return view('Promo/insert');
     }
     public function insertNew(Request $req){
