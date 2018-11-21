@@ -17,6 +17,14 @@
         img{
             width:95%;
         }
+        .pagination{
+            display: flex;
+            justify-content: center;
+        }
+        .pagination li{
+            list-style: none;
+            margin: 0 2%;
+        }
     </style>
 
     <div>
@@ -52,6 +60,6 @@
         @endif
         </div>
 
-        {{$cloth->render()}}
+        {{$cloth->links()}}
     </div>
 @endsection
