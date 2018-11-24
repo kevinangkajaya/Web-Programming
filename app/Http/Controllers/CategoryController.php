@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function updateCurrent(Request $req,$id){
         $validate = Validator::make($req->all(),[
             'categoryName' => 'required',
-            'categoryGender' => array('required','in:Male,Female'),
+            'categoryGender' => array('required','in:Male,Female,Unisex'),
             'categoryAge' => array('required','integer','min:1')
         ]);
 
