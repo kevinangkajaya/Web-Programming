@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function insertNew(Request $req){
         $validate = Validator::make($req->all(),[
             'categoryName' => 'required',
-            'categoryGender' => array('required','in:Male,Female'),
+            'categoryGender' => array('required','in:Male,Female,Unisex'),
             'categoryAge' => array('required','integer','min:1')
         ]);
 
