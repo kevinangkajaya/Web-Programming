@@ -47,12 +47,33 @@ main{
 	padding: 50px 25px;
 	min-height: 200px;
 }
-form{
-	text-align:center;
-}
-input{
+form, .errors{
 	width:75%;
+	margin: 0 auto;
+}
+.errors{
+	color: red;
+}
+.errors p{
+	margin:1px;
 }
 table{
 	width:100%;
+}
+input,select, textarea{
+	margin-bottom: 12px;
+	width:100%;
+}
+.labels{
+	margin-bottom: 2px;
+}
+h1{
+	color:#52125a;
+	font-size: 3em;
+	text-align:center;
+	margin-bottom: 0;
+}
+.insert{
+	text-align:center;
+	margin-bottom: 20px;
 }

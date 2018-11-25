@@ -1,9 +1,10 @@
 @extends('master')
 @section('title','Manage Promo')
+@section('bigTitle','Manage Promo')
 
 @section('content')
     <div>
-        <div style="text-align:center;">
+        <div class="insert">
             <a href="/insertPromo"><button>Insert New Promo</button></a>
         </div>
     <table>
