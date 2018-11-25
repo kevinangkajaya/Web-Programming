@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
                 'name' => $faker->name,
                 'age' => rand(17,30),
                 'address' => $faker->address,
-                'hobby' => $faker->jobTitle
+                // 'hobby' => $faker->jobTitle,
+                'gender'=> $faker->gender,
+                'phone'=> $faker->rand();
             ]);
         }
     }
