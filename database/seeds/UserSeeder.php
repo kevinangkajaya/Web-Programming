@@ -11,18 +11,13 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $faker = Faker\Factory::create();
-        for($i=0;$i<10;$i++) {
-            DB::table('users')->insert([
-                //'name' => str_random(5),
-                'name' => $faker->name,
-                'age' => rand(17,30),
-                'address' => $faker->address,
-                // 'hobby' => $faker->jobTitle,
-                'gender'=> $faker->gender,
-                'phone'=> $faker->rand();
-            ]);
-        }
+    {  
+        DB::table('users')->insert([
+            'name' => 'Tony Q',
+            'email'=> 'tonyQ@haha.com',
+            'address' => 'Ketapang Street',
+            'gender'=> 'male',
+            'phone'=> random_int(0, 13)
+        ]);   
     }
 }
