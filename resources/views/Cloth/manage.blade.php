@@ -25,6 +25,20 @@
             list-style: none;
             margin: 0 2%;
         }
+        .clothImage{
+            height:320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clothImage img{
+            max-height:320px;
+            width:auto;
+            max-width:95%;
+        }
+        .clothInfo{
+            height:340px;
+        }
     </style>
 
     <div>
@@ -42,13 +56,19 @@
         @if(count($cloth)!=0)
             @foreach($cloth as $p)
                 <div class="clothes-display" style="text-align:center;">
-                    <img src="/images/clothing/{{$p->clothDirectory}}">
+                    <div class="clothImage">
+                        <div>
+                            <img src="/images/clothing/{{$p->clothDirectory}}">
+                        </div>
+                    </div>
                     <div style="text-align:center;">
-                        <h3>{{$p->clothName}}</h3>
-                        <p>Category: {{$p->categories->categoryName}}</p>
-                        <p>Price: {{$p->clothPrice}}</p>
-                        <p>Stock: {{$p->clothStock}}</p>
-                        <p>Description: {{$p->clothDescription}}</p>
+                        <div class="clothInfo">
+                            <h3>{{$p->clothName}}</h3>
+                            <p>Category: {{$p->categories->categoryName}}</p>
+                            <p>Price: {{$p->clothPrice}}</p>
+                            <p>Stock: {{$p->clothStock}}</p>
+                            <p>Description: {{$p->clothDescription}}</p>
+                        </div>
                         <p>
                             <a href="/updateCloth/{{$p->id}}"><button>Update Cloth</button></a>
                             <a href="/removeCloth/{{$p->id}}"><button>Remove Cloth</button></a>
