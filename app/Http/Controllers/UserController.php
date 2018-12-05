@@ -11,6 +11,7 @@ class UserController extends Controller
     public function loginPage(){
         return view('login');
     }
+
     public function login(){
         // $user = [
         //     'emailAddress' => $req->input('emailAddress'),
@@ -21,9 +22,11 @@ class UserController extends Controller
         // }           
         return redirect('/cloth');
     } 
+
     public function registerPage(){
         return view('register');
     }
+
     public function register(Request $req){
         $validate = Validator::make($req->all(),[
             'fullName' => 'required',
@@ -64,4 +67,38 @@ class UserController extends Controller
             return redirect('/loginPage');
         }
     }
+
+    public function insert(){
+        return view('insert');
+    }
+
+    public function insertUser(Request $req){
+        $message = [
+            'required'=> 'Nama belum diisi',
+        ];
+
+        $validate = Validator::make($req->all(), ['nama'=>'required|max:255',
+                                                    'email'=>'required',
+                                                    'password'=>'required',
+                                                    'phone'=>'required',
+                                                    'address'=>'required',
+                                                    'gender'=>'required'], $message);
+        
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate);
+        }else{
+            $newUser = new User();
+            $newUser -> name = $req->username;
+            $newUser -> email = $req->useremail;
+            $newUser -> password = $req->userpassword;
+            $newUser -> confirmpassword = $req->userconfirmpass;
+            $newUser -> phone = $req->userphone;
+            $newUser -> address = $req->useraddress;
+            $newUser -> gender = $req->usergender;
+            $newUser -> imageDirectory = $image->getClientOriginalname();
+            $newUser -> save();
+            return redirect('/');
+        }
+    }
+
 }
