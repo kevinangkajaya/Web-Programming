@@ -15,6 +15,11 @@ Route::get('/', function () {
     return redirect('/cloth');
 });
 
+Route::get('/loginPage', 'UserController@loginPage');
+Route::post('login','UserController@login');
+Route::get('/registerPage', 'UserController@registerPage');
+Route::post('register','UserController@register');
+
 Route::get('/cloth', 'ClothController@redirect');
 Route::get('/insertCloth', 'ClothController@insert');
 Route::post('/insertNewCloth', 'ClothController@insertNew');

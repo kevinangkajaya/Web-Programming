@@ -21,7 +21,8 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                'regex:/^[a-zA-Z-]+$/'
+                //'regex:/^[a-zA-Z-]+$/',
+                'alpha_dash'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
@@ -53,7 +54,8 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                'regex:/^[a-zA-Z-]+$/'
+                //'regex:/^[a-zA-Z-]+$/',
+                'alpha_dash'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),

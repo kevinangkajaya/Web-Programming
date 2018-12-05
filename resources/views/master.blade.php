@@ -28,6 +28,8 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="/">Home</a></li>
+            <li><a href="/loginPage">Login</a></li>
+            <li><a href="/registerPage">Register</a></li>
             <li><a href="/category">Manage Categories</a></li>
 			<li><a href="/promo">Manage Promo</a></li>
 			<li><a href="order.html">Order</a></li>
