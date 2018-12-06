@@ -72,7 +72,7 @@
                         <p>
                             <a href="/updateCloth/{{$p->id}}"><button>Update Cloth</button></a>
                             <a href="/removeCloth/{{$p->id}}"><button>Remove Cloth</button></a>
-                            <a href=""><button>Add to Cart</button></a>
+                            <a href="/addToCart/{{$p->id}}"><button>Add to Cart</button></a>
                         </p>
                     </div>
                 </div>

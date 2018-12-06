@@ -30,16 +30,13 @@
 			<li><a href="/">Home</a></li>
             <li><a href="/loginPage">Login</a></li>
             <li><a href="/registerPage">Register</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li><a href="/category">Manage Categories</a></li>
 			<li><a href="/promo">Manage Promo</a></li>
-			<li><a href="order.html">Order</a></li>
-			<li>
-				<a>More Information</a>
-			 	<ul>
-					<li><a href="partner.html">Partner</a></li>
-					<li><a href="contactus.html">Contact Us</a></li>
-			 	</ul>
-			</li>
+            <li><a href="/user">Manage Users</a></li>
+            <li><a href="/transaction">Transaction History</a></li>
+			<li><a href="/logout">Log Out</a></li>
 		</ul>
 	</div>
 

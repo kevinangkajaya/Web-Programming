@@ -40,3 +40,15 @@ Route::post('/insertNewPromo', 'PromoController@insertNew');
 Route::get('/updatePromo/{id}', 'PromoController@redirectUpdate');
 Route::post('/updateCurrentPromo/{id}', 'PromoController@updateCurrent');
 Route::get('/removePromo/{id}', 'PromoController@remove');
+
+Route::get('/user','');
+
+Route::get('/profile','');
+Route::get('/cart','TransactionController@redirectCart');
+Route::get('/addToCart/{id}', 'TransactionController@addToCart');
+Route::get('/removeFromCart/{id}', 'TransactionController@removeFromCart');
+Route::get('/checkout','TransactionController@checkout');
+
+Route::get('/transaction','');
+
+Route::get('logout','');
