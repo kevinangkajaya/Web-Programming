@@ -42,9 +42,11 @@
     </style>
 
     <div>
+        @if(Session::has('role') && Session::get('role')=='admin')
         <div class="insert">
             <a href="/insertCloth"><button>Insert New Cloth</button></a>
         </div>
+        @endif
         
         <form action="/cloth" method="GET">
             <p class="labels">Search </p>
@@ -70,9 +72,14 @@
                             <p>Description: {{$p->clothDescription}}</p>
                         </div>
                         <p>
-                            <a href="/updateCloth/{{$p->id}}"><button>Update Cloth</button></a>
-                            <a href="/removeCloth/{{$p->id}}"><button>Remove Cloth</button></a>
-                            <a href="/addToCart/{{$p->id}}"><button>Add to Cart</button></a>
+                            @if(Session::has('role'))
+                                @if(Session::get('role')=='admin')
+                                <a href="/updateCloth/{{$p->id}}"><button>Update Cloth</button></a>
+                                <a href="/removeCloth/{{$p->id}}"><button>Remove Cloth</button></a>
+                                @elseif(Session::get('role')=='member')
+                                <a href="/addToCart/{{$p->id}}"><button>Add to Cart</button></a>
+                                @endif
+                            @endif
                         </p>
                     </div>
                 </div>

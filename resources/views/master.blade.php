@@ -32,15 +32,21 @@
 	<div id="navigation">
 		<ul>
 			<li><a href="/">Home</a></li>
-            <li><a href="/loginPage">Login</a></li>
-            <li><a href="/registerPage">Register</a></li>
-            <li><a href="/cart">Cart</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="/category">Manage Categories</a></li>
-			<li><a href="/promo">Manage Promo</a></li>
-            <li><a href="/user">Manage Users</a></li>
-            <li><a href="/transaction">Transaction History</a></li>
-			<li><a href="/logout">Log Out</a></li>
+            @if(Session::has('role'))
+                @if(Session::get('role') == 'admin')
+                    <li><a href="/category">Manage Categories</a></li>
+                    <li><a href="/promo">Manage Promo</a></li>
+                    <li><a href="/user">Manage Users</a></li>
+                    <li><a href="/transaction">Transaction History</a></li>
+                @elseif(Session::get('role') == 'member')
+                    <li><a href="/cart">Cart</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                @endif
+			    <li><a href="/logout">Log Out</a></li>
+            @else
+                <li><a href="/loginPage">Login</a></li>
+                <li><a href="/registerPage">Register</a></li>
+            @endif
 		</ul>
 	</div>
 

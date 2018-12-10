@@ -14,7 +14,6 @@ class UserController extends Controller
     public function loginPage(){
         return view('login');
     }
-<<<<<<< HEAD
     public function login(Request $request){
         $data = User::where('email',$request->email)->first();
         if($data != null){
@@ -34,18 +33,6 @@ class UserController extends Controller
         } else{
             return redirect()->back()->withErrors("Invalid Email");
         } 
-=======
-
-    public function login(){
-        // $user = [
-        //     'emailAddress' => $req->input('emailAddress'),
-        //     'password' => $req->input('password')
-        // ];        
-        // if(!Auth::attempt($user)){      
-        //     return redirect()->back()->with('errors', "Login Failed");
-        // }           
-        return redirect('/cloth');
->>>>>>> 28f6819202aeed63028ff9fee400875d1b29c8a4
     } 
 
     public function registerPage(){
@@ -92,12 +79,10 @@ class UserController extends Controller
             return redirect('/loginPage');
         }
     }
-<<<<<<< HEAD
     public function logout(){
         Session::flush();
         return redirect('');
     }
-=======
 
     public function insert(){
         return view('insert');
@@ -132,5 +117,4 @@ class UserController extends Controller
         }
     }
 
->>>>>>> 28f6819202aeed63028ff9fee400875d1b29c8a4
 }
