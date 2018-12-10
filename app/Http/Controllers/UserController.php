@@ -14,6 +14,7 @@ class UserController extends Controller
     public function loginPage(){
         return view('login');
     }
+<<<<<<< HEAD
     public function login(Request $request){
         $data = User::where('email',$request->email)->first();
         if($data != null){
@@ -33,10 +34,24 @@ class UserController extends Controller
         } else{
             return redirect()->back()->withErrors("Invalid Email");
         } 
+=======
+
+    public function login(){
+        // $user = [
+        //     'emailAddress' => $req->input('emailAddress'),
+        //     'password' => $req->input('password')
+        // ];        
+        // if(!Auth::attempt($user)){      
+        //     return redirect()->back()->with('errors', "Login Failed");
+        // }           
+        return redirect('/cloth');
+>>>>>>> 28f6819202aeed63028ff9fee400875d1b29c8a4
     } 
+
     public function registerPage(){
         return view('register');
     }
+
     public function register(Request $req){
         $validate = Validator::make($req->all(),[
             'fullName' => 'required',
@@ -77,8 +92,45 @@ class UserController extends Controller
             return redirect('/loginPage');
         }
     }
+<<<<<<< HEAD
     public function logout(){
         Session::flush();
         return redirect('');
     }
+=======
+
+    public function insert(){
+        return view('insert');
+    }
+
+    public function insertUser(Request $req){
+        $message = [
+            'required'=> 'Nama belum diisi',
+        ];
+
+        $validate = Validator::make($req->all(), ['nama'=>'required|max:255',
+                                                    'email'=>'required',
+                                                    'password'=>'required',
+                                                    'phone'=>'required',
+                                                    'address'=>'required',
+                                                    'gender'=>'required'], $message);
+        
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate);
+        }else{
+            $newUser = new User();
+            $newUser -> name = $req->username;
+            $newUser -> email = $req->useremail;
+            $newUser -> password = $req->userpassword;
+            $newUser -> confirmpassword = $req->userconfirmpass;
+            $newUser -> phone = $req->userphone;
+            $newUser -> address = $req->useraddress;
+            $newUser -> gender = $req->usergender;
+            $newUser -> imageDirectory = $image->getClientOriginalname();
+            $newUser -> save();
+            return redirect('/');
+        }
+    }
+
+>>>>>>> 28f6819202aeed63028ff9fee400875d1b29c8a4
 }
