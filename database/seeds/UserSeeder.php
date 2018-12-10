@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'password' => 'adminadmin',
             'phone' => '08333444555',
             'address' => 'Jakarta',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'admin'
         ]); 
         DB::table('users')->insert([
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'password' => 'tonyxxzzmm',
             'phone' => '08121212134',
             'address' => 'Ketapang Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'password' => 'andyshsas',
             'phone' => '0812938402',
             'address' => 'kojang Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'password' => 'prabuhssfdj',
             'phone' => '087850605356',
             'address' => 'jompo Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
@@ -73,7 +73,7 @@ class UserSeeder extends Seeder
             'password' => 'agusdjfhajh12',
             'phone' => '085733488500',
             'address' => 'orhu Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'password' => 'aiwksdf712',
             'phone' => '085730351304',
             'address' => 'oslo Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
             'password' => 'bent798123h',
             'phone' => '08179614832',
             'address' => 'bunyus Street',
-            'gender'=> 'male',
+            'gender'=> 'Male',
             'role' => 'member'
         ]);   
         DB::table('users')->insert([
