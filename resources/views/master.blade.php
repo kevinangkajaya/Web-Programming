@@ -20,8 +20,12 @@
 	<div id="header">
         <!-- <img src="{{asset('images/logo.png')}}"> -->
         <h1 id="titleLogo">D’Online Clothes</h1>
+        @if(Session::has('name'))
+        <p id="welcomeHello">Hello, {{Session::get('name')}}</p>
+        @else
         <p id="welcomeHello">Hello, guest!</p>
-            <p id="welcomeHello">{{$mytime}}</p>
+        @endif
+        <p id="welcomeHello">{{$mytime}}</p>
 
 	</div>
 

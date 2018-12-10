@@ -5,21 +5,34 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function loginPage(){
         return view('login');
     }
-    public function login(){
-        // $user = [
-        //     'emailAddress' => $req->input('emailAddress'),
-        //     'password' => $req->input('password')
-        // ];        
-        // if(!Auth::attempt($user)){      
-        //     return redirect()->back()->with('errors', "Login Failed");
-        // }           
-        return redirect('/cloth');
+    public function login(Request $request){
+        $data = User::where('email',$request->email)->first();
+        if($data != null){
+            if(($data->password==$request->password)){
+                Session::put("name",$data->name);
+                Session::put("role",$data->role);
+                Session::put("email",$data->email);
+                Session::put("isLogin",TRUE);
+                if($request->has('checkbox')){
+                    Cookie::queue("email",$request->email,3600);
+                    Cookie::queue("password",$request->password,3600);
+                }               
+                return redirect('/cloth');
+            } else{
+                return redirect()->back()->withErrors("Invalid Password");
+            }
+        } else{
+            return redirect()->back()->withErrors("Invalid Email");
+        } 
     } 
     public function registerPage(){
         return view('register');
@@ -29,7 +42,6 @@ class UserController extends Controller
             'fullName' => 'required',
             'userEmail' => array('required','email','unique:users,email'),
             'password' => array('required',
-                //'regex:/^[a-zA-Z-]+$/',
                 'alpha_dash',
                 'min:5',
                 'confirmed'
@@ -38,14 +50,14 @@ class UserController extends Controller
             'userGender' => array('required','in:Male,Female'),
             'userAddress' => array('required'),
             'userPfp' => array('image','max:5000')
-        ],$message = [
-            'regex' => ':attribute must be alphabets or dash only'
-        ]);;
+        ]);
 
         $pos = strpos($req->userAddress, 'street');        
 
-        if($validate->fails() || $pos === false){
+        if($validate->fails()){
             return redirect() ->back()->withErrors($validate);
+        } else if($pos === false){
+            return redirect() ->back()->withErrors('Address must contains "street" word');
         } else {
 
             $newUser = new User();
@@ -60,8 +72,13 @@ class UserController extends Controller
                 $image->move('images/pfp', $image->getClientOriginalname());
                 $newUser->pfp = $image->getClientOriginalname();
             }
+            $newUser->role = 'member';
             $newUser->save();
             return redirect('/loginPage');
         }
+    }
+    public function logout(){
+        Session::flush();
+        return redirect('');
     }
 }

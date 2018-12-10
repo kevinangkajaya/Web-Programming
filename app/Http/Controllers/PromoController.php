@@ -21,14 +21,11 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                //'regex:/^[a-zA-Z-]+$/',
                 'alpha_dash'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
             'endDate' => array('required','date')
-        ],$message = [
-            'regex' => ':attribute must be alphabets or dash only'
         ]);
 
         if($validate->fails() ){
@@ -54,14 +51,11 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                //'regex:/^[a-zA-Z-]+$/',
                 'alpha_dash'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
             'endDate' => array('required','date')
-        ],$message = [
-            'regex' => 'The :attribute must be alphabets or dash only'
         ]);
 
         if($validate->fails() ){

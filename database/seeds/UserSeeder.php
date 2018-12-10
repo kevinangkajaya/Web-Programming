@@ -16,11 +16,12 @@ class UserSeeder extends Seeder
             'id' => 1,
             'name' => 'admin',
             'email'=> 'admin@admin.com',
-            'password' => Hash::make('adminadmin'),
+            'password' => 'adminadmin',
             'phone' => '08333444555',
             'address' => 'Jakarta',
             'gender'=> 'male',
             'pfp' => 'cat-01.png',
+            'role' => 'admin'
         ]); 
         DB::table('users')->insert([
             'name' => 'Tony Q',
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'phone' => '08121212134',
             'address' => 'Ketapang Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Andy Lau',
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
             'phone' => '0812938402',
             'address' => 'kojang Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Braxton J',
@@ -45,6 +48,7 @@ class UserSeeder extends Seeder
             'phone' => '087851423695',
             'address' => 'johor Street',
             'gender'=> 'Female',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'A Prabhu',
@@ -53,6 +57,7 @@ class UserSeeder extends Seeder
             'phone' => '087850605356',
             'address' => 'jompo Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Aarti Lohia',
@@ -61,6 +66,7 @@ class UserSeeder extends Seeder
             'phone' => '08563455826',
             'address' => 'muhes Street',
             'gender'=> 'Female',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Agus Djohari',
@@ -69,6 +75,7 @@ class UserSeeder extends Seeder
             'phone' => '085733488500',
             'address' => 'orhu Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Aiwy',
@@ -77,6 +84,7 @@ class UserSeeder extends Seeder
             'phone' => '085730351304',
             'address' => 'oslo Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Amy Delia',
@@ -85,6 +93,7 @@ class UserSeeder extends Seeder
             'phone' => '081934644449',
             'address' => 'hursun Street',
             'gender'=> 'Female',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Benny Tenges',
@@ -93,6 +102,7 @@ class UserSeeder extends Seeder
             'phone' => '08179614832',
             'address' => 'bunyus Street',
             'gender'=> 'male',
+            'role' => 'member'
         ]);   
         DB::table('users')->insert([
             'name' => 'Christiana Niowni',
@@ -101,6 +111,7 @@ class UserSeeder extends Seeder
             'phone' => '085732016400',
             'address' => 'yolis Street',
             'gender'=> 'Female',
+            'role' => 'member'
         ]);   
     }
 }
