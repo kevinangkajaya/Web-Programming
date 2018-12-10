@@ -54,7 +54,7 @@ class UserController extends Controller
             'userPfp' => array('image','max:5000')
         ]);
 
-        $pos = strpos($req->userAddress, 'street');        
+        $pos = strpos(strtoupper($req->userAddress), 'STREET');           
 
         if($validate->fails()){
             return redirect() ->back()->withErrors($validate);
@@ -102,7 +102,7 @@ class UserController extends Controller
             'userPfp' => array('image','max:5000')
         ]);
 
-        $pos = strpos($req->userAddress, 'street');        
+        $pos = strpos(strtoupper($req->userAddress), 'STREET');        
 
         if($validate->fails()){
             return redirect() ->back()->withErrors($validate);
