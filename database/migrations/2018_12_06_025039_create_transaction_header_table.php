@@ -16,7 +16,7 @@ class CreateTransactionHeaderTable extends Migration
         Schema::create('transaction_header', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userID');
-            $table->integer('promoID');
+            $table->integer('promoID')->nullable;
             $table->datetime('date');
             $table->integer('totalPrice');
             $table->timestamps();

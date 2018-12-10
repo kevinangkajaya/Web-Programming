@@ -3,6 +3,17 @@
 @section('bigTitle','Cart')
 
 @section('content')
+    <style>
+        table{
+            text-align:center;
+            width:75%;
+            margin: 0 auto;
+        }
+        table tbody tr td img{
+            max-height:200px;
+            width:auto;
+        }
+    </style>
     <div>
         @php($total = 0);
         <table>
@@ -18,7 +29,7 @@
 
             @if(count($cart)!=0)
                 @foreach($cart as $p)
-                    @php($total += $p->clothes->clothPrice)
+                    @php($total += ($p->clothes->clothPrice*$p->qty))
                     <tbody>
                         <tr>
                             <td><img src="/images/clothing/{{$p->clothes->clothDirectory}}"></td>
@@ -34,7 +45,7 @@
             @endif
         </table>
 
-        <form method="POST" action="/checkout" enctype="multipart/form-data">
+        <form method="POST" action="/checkout/{{$total}}" enctype="multipart/form-data">
             {{csrf_field()}}
             <p class="labels">Promo Code</p>
             <input type="text" name="promoCode"><br>

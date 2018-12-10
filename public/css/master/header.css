@@ -7,12 +7,14 @@
 	padding-right: 20px;
 	font-size: 18px;
 	margin-top:0;
+	margin-bottom:3px;
 }
 #titleLogo{
 	font-size: 55px;
 	color: #6f2777;
 	text-align: center;
 	margin-bottom: 0;
+	margin-top:7px;
 }
 @media only screen and (max-width: 500px) {
 	#header img{

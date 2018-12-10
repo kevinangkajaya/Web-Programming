@@ -7,25 +7,31 @@ use App\Cloth;
 use App\TransactionDetail;
 use App\TransactionHeader;
 use App\User;
+use App\Promo;
 use Carbon\carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
 {
     public function redirectCart(){
-        $cart = Cart::where('userID',$userid);
+        $user = User::where('email',Session::get('email'))->first();
+        $cart = Cart::where('userID',$user->id)->get();
         return view('cart',compact('cart'));
     }
-    public function addToCart(Request $req,$id){        
-        $cart = Cart::where('clothID',$id)->where('userID',$userid)->first();
-        if($cart !== null){
+    public function addToCart(Request $req,$id){    
+        $user = User::where('email',Session::get('email'))->first();    
+        $cart = Cart::where('clothID',$id)->where('userID',$user->id)->first();
+        if($cart != null){
             $cart->qty = $cart->qty + 1;
+            $cart->save();
         }
         else{
             $newCart = new Cart();
             $newCart->clothID = $id;
-            $newCart->userID = $userid;
+            $newCart->userID = $user->id;
             $newCart->qty = 1;
+            $newCart->save();
         }
         return redirect('/cloth');
     }
@@ -34,7 +40,7 @@ class TransactionController extends Controller
         $cart->delete();
         return redirect('/cart');
     }
-    public function checkout(Request $req){
+    public function checkout(Request $req, $total){
         $promo = null;
         if($req->has('promoCode')){
             $promo = Promo::where('promoCode',$req->promoCode)->first();
@@ -46,37 +52,36 @@ class TransactionController extends Controller
             }
         }
         
-        $cart = Cart::where('userID',$userid);
+        $user = User::where('email',Session::get('email'))->first();
+        $cart = Cart::where('userID',$user->id)->get();
 
         $transheader = new TransactionHeader();
-        $transheader->userID = $userID;
-        if($promo !== null){
+        $transheader->userID = $user->id;
+        if($promo != null){
             $transheader->promoID = $promo->id;
         }
-        $transheader->date = Carbon::now()->toDateTimeString();
+        $transheader->date = Carbon::now()->toDateTimeString(); 
+        if($promo != null){
+            $transheader->totalPrice = $total - ($total * $promo->promoDisc);
+        }
+        else{
+            $transheader->totalPrice = $total;
+        }
         $transheader->save();
         
-        $totalPrice = 0;
         foreach($cart as $c){
             $transdetail = new TransactionDetail();
             $transdetail->transactionHeaderID = $transheader->id;
             $transdetail->clothID = $c->clothes->id;
             $transdetail->qty = $c->qty;
+            $transdetail->save();
 
-            $totalPrice += $c->clothes->clothPrice;
-            $cloth = Cloth::where('id',$c->clothID);
-            $cloth->clothStock -= $c->qty;
-        }
-        
-        if($promo !== null){
-            $transheader->totalPrice = clothPrice - (clothPrice * $promo->promoDisc);
-        }
-        else{
-            $transheader->totalPrice = clothPrice;
-        }
-        $transheader->save();
+            $cloth = Cloth::where('id',$c->clothID)->first();
+            $cloth->clothStock = $cloth->clothStock - $c->qty;
+            $cloth->save();
 
-        $cart->delete();
-        return redirect('/cloth');
+            $c->delete();
+        }
+        return redirect('/');
     }
 }

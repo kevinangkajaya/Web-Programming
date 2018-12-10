@@ -9,6 +9,8 @@
             grid-template-columns: repeat(4,25%);
             grid-gap:5px;
             padding-top:10px;
+            width: 85%;
+            margin: 0 auto;
         }
         .clothes-display{
             border-style: solid;
@@ -26,18 +28,25 @@
             margin: 0 2%;
         }
         .clothImage{
-            height:320px;
+            height:250px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .clothImage img{
-            max-height:320px;
+            max-height:250px;
             width:auto;
             max-width:95%;
         }
         .clothInfo{
-            height:340px;
+            height:265px;
+        }
+        .clothInfo p{
+            font-size:14px;
+        }
+        .clothInfo p, .clothInfo h3{
+            padding:0;
+            margin:0;
         }
     </style>
 
