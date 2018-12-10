@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'phone' => '08333444555',
             'address' => 'Jakarta',
             'gender'=> 'male',
-            'pfp' => 'cat-01.png',
             'role' => 'admin'
         ]); 
         DB::table('users')->insert([

@@ -22,7 +22,7 @@
         <input type="password" name="password_confirmation" placeholder="Password"><br>
         <p class="labels">Phone </p>
         <input type="text" name="userPhone" placeholder="Phone"><br>
-        <p class="labels">Category Gender </p>
+        <p class="labels"> Gender </p>
         <select name="userGender">
             <option value="">Select Gender</option>
             <option value="Male">Male</option>

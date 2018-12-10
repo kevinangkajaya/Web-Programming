@@ -79,6 +79,50 @@ class UserController extends Controller
             return redirect('/loginPage');
         }
     }
+    public function profilePage(){
+        $email = Session::get('email');
+        $user = User::where('email',$email)->first();
+        return view('/Profile/view',compact('user'));
+    }
+    public function updateProfilePage(){
+        $email = Session::get('email');
+        $user = User::where('email',$email)->first();
+        return view('/Profile/update',compact('user'));
+    }
+    public function updateProfile(Request $req){
+        $email = Session::get('email'); 
+        $user = User::where('email',$email)->first();
+
+        $validate = Validator::make($req->all(),[
+            'fullName' => 'required',
+            'userEmail' => array('required','email','unique:users,email,'.$user->id),            
+            'userPhone' => array('required','digits_between:11,12'),
+            'userGender' => array('required','in:Male,Female'),
+            'userAddress' => array('required'),
+            'userPfp' => array('image','max:5000')
+        ]);
+
+        $pos = strpos($req->userAddress, 'street');        
+
+        if($validate->fails()){
+            return redirect() ->back()->withErrors($validate);
+        } else if($pos === false){
+            return redirect() ->back()->withErrors('Address must contains "street" word');
+        } else {
+            $user->name = $req->fullName;
+            $user->email = $req->userEmail;
+            $user->phone = $req->userPhone;
+            $user->gender = $req->userGender;
+            $user->address = $req->userAddress;         
+            if($req->has('userPfp')){
+                $image = $req->userPfp;  
+                $image->move('images/pfp', $image->getClientOriginalname());
+                $user->pfp = $image->getClientOriginalname();
+            }
+            $user->save();
+            return redirect('/profile');
+        }
+    }
     public function logout(){
         Session::flush();
         return redirect('');

@@ -43,7 +43,9 @@ Route::get('/removePromo/{id}', 'PromoController@remove')->middleware(\App\Http\
 
 // Route::get('/user','');
 
-// Route::get('/profile','');
+Route::get('/profile','UserController@profilePage')->middleware(\App\Http\Middleware\memberAuthCheck::class);
+Route::get('/updateProfilePage','UserController@updateProfilePage')->middleware(\App\Http\Middleware\memberAuthCheck::class);
+Route::post('/updateProfile','UserController@updateProfile')->middleware(\App\Http\Middleware\memberAuthCheck::class);
 Route::get('/cart','TransactionController@redirectCart')->middleware(\App\Http\Middleware\memberAuthCheck::class);
 Route::get('/addToCart/{id}', 'TransactionController@addToCart')->middleware(\App\Http\Middleware\memberAuthCheck::class);
 Route::get('/removeFromCart/{id}', 'TransactionController@removeFromCart')->middleware(\App\Http\Middleware\memberAuthCheck::class);
