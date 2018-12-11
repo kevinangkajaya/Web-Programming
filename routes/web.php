@@ -21,6 +21,15 @@ Route::post('login','UserController@login')->middleware(Middleware\guestAuthChec
 Route::get('/registerPage', 'UserController@registerPage')->middleware(Middleware\guestAuthCheck::class);
 Route::post('register','UserController@register')->middleware(Middleware\guestAuthCheck::class);
 
+Route::get('/profile','UserController@profilePage')->middleware(Middleware\memberAuthCheck::class);
+Route::get('/updateProfilePage','UserController@updateProfilePage')->middleware(Middleware\memberAuthCheck::class);
+Route::post('/updateProfile','UserController@updateProfile')->middleware(Middleware\memberAuthCheck::class);
+
+Route::get('/cart','TransactionController@redirectCart')->middleware(Middleware\memberAuthCheck::class);
+Route::get('/addToCart/{id}', 'TransactionController@addToCart')->middleware(Middleware\memberAuthCheck::class);
+Route::get('/removeFromCart/{id}', 'TransactionController@removeFromCart')->middleware(Middleware\memberAuthCheck::class);
+Route::post('/checkout/{total}','TransactionController@checkout')->middleware(Middleware\memberAuthCheck::class);
+
 Route::get('/cloth', 'ClothController@redirect');
 Route::get('/insertCloth', 'ClothController@insert')->middleware(Middleware\adminAuthCheck::class);
 Route::post('/insertNewCloth', 'ClothController@insertNew')->middleware(Middleware\adminAuthCheck::class);
@@ -42,14 +51,6 @@ Route::get('/updatePromo/{id}', 'PromoController@redirectUpdate')->middleware(Mi
 Route::post('/updateCurrentPromo/{id}', 'PromoController@updateCurrent')->middleware(Middleware\adminAuthCheck::class);
 Route::get('/removePromo/{id}', 'PromoController@remove')->middleware(Middleware\adminAuthCheck::class);
 
-Route::get('/profile','UserController@profilePage')->middleware(Middleware\memberAuthCheck::class);
-Route::get('/updateProfilePage','UserController@updateProfilePage')->middleware(Middleware\memberAuthCheck::class);
-Route::post('/updateProfile','UserController@updateProfile')->middleware(Middleware\memberAuthCheck::class);
-Route::get('/cart','TransactionController@redirectCart')->middleware(Middleware\memberAuthCheck::class);
-Route::get('/addToCart/{id}', 'TransactionController@addToCart')->middleware(Middleware\memberAuthCheck::class);
-Route::get('/removeFromCart/{id}', 'TransactionController@removeFromCart')->middleware(Middleware\memberAuthCheck::class);
-Route::post('/checkout/{total}','TransactionController@checkout')->middleware(Middleware\memberAuthCheck::class);
-
-// Route::get('/transaction','');
+Route::get('/historyPage','TransactionController@historyPage')->middleware(Middleware\adminAuthCheck::class);
 
 Route::get('logout','UserController@logout');

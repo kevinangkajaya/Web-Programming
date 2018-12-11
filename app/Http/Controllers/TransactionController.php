@@ -90,4 +90,9 @@ class TransactionController extends Controller
         }
         return redirect('/');
     }
+    public function historyPage(){
+        $transHeader = TransactionHeader::all();
+        $transDetail = TransactionDetail::all();
+        return view('transactionHistory',compact('transHeader', 'transDetail'));
+    }
 }

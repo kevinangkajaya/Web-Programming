@@ -76,7 +76,7 @@
                         <div class="clothInfo">
                             <h3>{{$p->clothName}}</h3>
                             <p>Category: {{$p->categories->categoryName}}</p>
-                            <p>Price: {{$p->clothPrice}}</p>
+                            <p>Price: Rp{{number_format ($p->clothPrice,0,',','.')}}</p>
                             <p>Stock: {{$p->clothStock}}</p>
                             <p>Description: {{$p->clothDescription}}</p>
                         </div>

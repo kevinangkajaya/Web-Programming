@@ -37,7 +37,7 @@
                     <li><a href="/category">Manage Categories</a></li>
                     <li><a href="/promo">Manage Promo</a></li>
                     <li><a href="/user">Manage Users</a></li>
-                    <li><a href="/transaction">Transaction History</a></li>
+                    <li><a href="/historyPage">Transaction History</a></li>
                 @elseif(Session::get('role') == 'member')
                     <li><a href="/cart">Cart</a></li>
                     <li><a href="/profile">Profile</a></li>

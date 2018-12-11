@@ -35,29 +35,29 @@
                 </tr>
             </thead>
 
+            <tbody>
             @if(count($cart)!=0)
                 @foreach($cart as $p)
                     @php($total += ($p->clothes->clothPrice*$p->qty))
-                    <tbody>
                         <tr>
                             <td><img src="/images/clothing/{{$p->clothes->clothDirectory}}"></td>
                             <td>{{$p->clothes->clothName}}</td>
                             <td>{{$p->qty}}</td>
-                            <td>{{$p->clothes->clothPrice}}</td>
+                            <td>Rp{{number_format ($p->clothes->clothPrice*$p->qty,0,',','.')}}</td>
                             <td style="text-align:center;">
                                 <a href="/removeFromCart/{{$p->id}}"><button>Remove</button></a>
                             </td>
                         </tr>
-                    </tbody>
                 @endforeach
             @endif
+            </tbody>
         </table>
 
         <form method="POST" action="/checkout/{{$total}}" enctype="multipart/form-data">
             {{csrf_field()}}
             <p class="labels">Promo Code</p>
             <input type="text" name="promoCode"><br>
-            <p class="labels">Total Price:</p> {{$total}}
+            <p class="labels">Total Price:</p> Rp{{number_format ($total,0,',','.')}}
             <input type="submit" value="Checkout">
         </form>
     </div>

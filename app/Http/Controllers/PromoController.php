@@ -21,7 +21,8 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                'alpha_dash'
+                'alpha_dash',
+                'unique:promo,promoCode'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
@@ -51,7 +52,8 @@ class PromoController extends Controller
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                'alpha_dash'
+                'alpha_dash',
+                'unique:promo,promoCode,'.$id
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),

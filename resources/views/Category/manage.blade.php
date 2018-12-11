@@ -17,9 +17,9 @@
         </tr>
         </thead>
 
+        <tbody>
         @if(count($category)!=0)
             @foreach($category as $p)
-                <tbody>
                 <tr>
                     <td>{{$p->categoryName}}</td>
                     <td>{{$p->categoryGender}}</td>
@@ -29,9 +29,9 @@
                         <a href="/removeCategory/{{$p->id}}"><button>Remove Category</button></a>
                     </td>
                 </tr>
-                </tbody>
             @endforeach
         @endif
+        </tbody>
     </table>
     </div>
 @endsection

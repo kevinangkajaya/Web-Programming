@@ -19,9 +19,9 @@
         </tr>
         </thead>
 
+        <tbody>
         @if(count($promo)!=0)
             @foreach($promo as $p)
-                <tbody>
                 <tr>
                     <td>{{$p->promoCode}}</td>
                     <td>{{$p->promoName}}</td>
@@ -33,9 +33,9 @@
                         <a href="/removePromo/{{$p->id}}"><button>Remove Promo</button></a>
                     </td>
                 </tr>
-                </tbody>
             @endforeach
         @endif
+        </tbody>
     </table>
     </div>
 @endsection
