@@ -16,7 +16,7 @@ class CreatePromoTable extends Migration
         Schema::create('promo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('promoName');
-            $table->string('promoCode')->unique;
+            $table->string('promoCode');
             $table->integer('promoDisc');
             $table->date('startDate');
             $table->date('endDate');

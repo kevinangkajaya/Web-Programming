@@ -41,14 +41,20 @@ class TransactionController extends Controller
         return redirect('/cart');
     }
     public function checkout(Request $req, $total){
+        if($total == 0) return redirect()->back()->withErrors('Nothing to checkout!');
+
         $promo = null;
         if($req->has('promoCode')){
-            $promo = Promo::where('promoCode',$req->promoCode)->first();
-            if($promo !== null){
-                //check current date, else return
-            }
-            else{
-                //return false
+            if($req->promoCode != ""){
+                $promo = Promo::where('promoCode',$req->promoCode)->first();
+                if($promo !== null){
+                    if(Carbon::now() < $promo->startDate || Carbon::now() > $promo->endDate ){
+                        return redirect()->back()->withErrors('Promo Code cannot be used');
+                    }
+                }
+                else{
+                    return redirect()->back()->withErrors('Promo does not exist');
+                }
             }
         }
         
@@ -62,7 +68,7 @@ class TransactionController extends Controller
         }
         $transheader->date = Carbon::now()->toDateTimeString(); 
         if($promo != null){
-            $transheader->totalPrice = $total - ($total * $promo->promoDisc);
+            $transheader->totalPrice = $total - ($total * ($promo->promoDisc/100));
         }
         else{
             $transheader->totalPrice = $total;

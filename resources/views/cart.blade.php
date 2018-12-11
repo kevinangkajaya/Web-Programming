@@ -16,6 +16,14 @@
     </style>
     <div>
         @php($total = 0);
+
+         <!--Display Error-->
+        <div class="errors">
+            @foreach($errors->all() as $e)
+                <p>{{$e}}</p>
+            @endforeach
+        </div>
+
         <table>
             <thead>
                 <tr>
