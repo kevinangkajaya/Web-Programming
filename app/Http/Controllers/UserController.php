@@ -40,11 +40,20 @@ class UserController extends Controller
     }
 
     public function register(Request $req){
+        Validator::extend('not_contains', function($attribute, $value, $parameters)
+        {
+            $words = array('1', '2', '3','4','5','6','7','8','9','0','_');
+            foreach ($words as $word)
+            {
+                if (strpos($value, $word) !== false) return false;
+            }
+            return true;
+        });
         $validate = Validator::make($req->all(),[
             'fullName' => 'required',
             'userEmail' => array('required','email','unique:users,email'),
             'password' => array('required',
-                'alpha_dash',
+                'alpha_dash','not_contains',
                 'min:5',
                 'confirmed'
             ),
@@ -52,7 +61,10 @@ class UserController extends Controller
             'userGender' => array('required','in:Male,Female'),
             'userAddress' => array('required'),
             'userPfp' => array('image','max:5000')
-        ]);
+        ],$messages = array(
+            'not_contains' => 'The :attribute can only be alphabets or dashes',
+            'alpha_dash' => 'The :attribute can only be alphabets or dashes'
+        ));
 
         $pos = strpos(strtoupper($req->userAddress), 'STREET');           
 

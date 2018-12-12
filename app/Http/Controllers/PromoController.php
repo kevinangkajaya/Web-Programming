@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class PromoController extends Controller
-{
+{    
     public function redirect(){
         $promo = Promo::all();
         return view('Promo/manage',compact('promo'));
@@ -16,18 +16,28 @@ class PromoController extends Controller
         return view('Promo/insert');
     }
     public function insertNew(Request $req){
+        Validator::extend('not_contains', function($attribute, $value, $parameters)
+        {
+            $words = array('1', '2', '3','4','5','6','7','8','9','0','_');
+            foreach ($words as $word)
+            {
+                if (strpos($value, $word) !== false) return false;
+            }
+            return true;
+        });
         $validate = Validator::make($req->all(),[
             'promoName' => 'required',
             'promoCode' => array(
-                'required',
-                'between:10,30',
-                'alpha_dash',
-                'unique:promo,promoCode'
+                'required', 'between:10,30','alpha_dash',
+                'not_contains','unique:promo,promoCode'
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
             'endDate' => array('required','date')
-        ]);
+        ],$messages = array(
+            'not_contains' => 'The :attribute can only be alphabets or dashes',
+            'alpha_dash' => 'The :attribute can only be alphabets or dashes'
+        ));
 
         if($validate->fails() ){
             return redirect() ->back()->withErrors($validate);
@@ -47,18 +57,30 @@ class PromoController extends Controller
         return view('Promo/update',compact('promo'));
     }
     public function updateCurrent(Request $req,$id){
+        Validator::extend('not_contains', function($attribute, $value, $parameters)
+        {
+            $words = array('1', '2', '3','4','5','6','7','8','9','0','_');
+            foreach ($words as $word)
+            {
+                if (strpos($value, $word) !== false) return false;
+            }
+            return true;
+        });
         $validate = Validator::make($req->all(),[
             'promoName' => 'required',
             'promoCode' => array(
                 'required',
                 'between:10,30',
-                'alpha_dash',
+                'alpha_dash','not_contains',
                 'unique:promo,promoCode,'.$id
             ),
             'promoDisc' => array('required','integer','between:1,99'),
             'startDate' => array('required','date'),
             'endDate' => array('required','date')
-        ]);
+        ],$messages = array(
+            'not_contains' => 'The :attribute can only be alphabets or dashes',
+            'alpha_dash' => 'The :attribute can only be alphabets or dashes'
+        ));
 
         if($validate->fails() ){
             return redirect() ->back()->withErrors($validate);
