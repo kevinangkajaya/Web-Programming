@@ -56,16 +56,7 @@ class ClothSeeder extends Seeder
             'clothStock' => 30,
             'clothDirectory' => 'cloth6.jpg',
             'created_at' => Carbon::now()->toDateTimeString()
-        ]);  
-        DB::table('clothes')->insert([
-            'categoryID' => 1,
-            'clothName' => 'Blue Long Sleeve Shirt',
-            'clothPrice' => 270000,
-            'clothDescription' => 'Blue and shiny.',
-            'clothStock' => 30,
-            'clothDirectory' => 'deeksha-original.jpeg',
-            'created_at' => Carbon::now()->toDateTimeString()
-        ]);
+        ]); 
         DB::table('clothes')->insert(
         [
             'categoryID' => 1,
