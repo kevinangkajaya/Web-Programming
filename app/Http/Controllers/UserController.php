@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    public function redirect(){
+        $user = User::all();
+        return view('User/manage',compact('user'));
+    }
+
     public function loginPage(){
         return view('login');
     }
@@ -140,37 +145,44 @@ class UserController extends Controller
         return redirect('');
     }
 
-    public function insert(){
-        return view('insert');
+    public function redirectUpdate($id){
+        $user = User::where('id',$id)->first();
+        return view('User/update',compact('user'));
     }
 
-    public function insertUser(Request $req){
-        $message = [
-            'required'=> 'Nama belum diisi',
-        ];
+    public function updateCurrent(Request $req,$id){
+        $email = Session::get('email');
+        $user = User::where('email',$email)->first();
 
-        $validate = Validator::make($req->all(), ['nama'=>'required|max:255',
-                                                    'email'=>'required',
-                                                    'password'=>'required',
-                                                    'phone'=>'required',
-                                                    'address'=>'required',
-                                                    'gender'=>'required'], $message);
-        
+        $validate = Validator::make($req->all(),[
+            'fullName' => 'required',
+            'userEmail' => array('required','email','unique:users,email,'.$user->id),
+            'userPhone' => array('required','digits_between:11,12'),
+            'userGender' => array('required','in:Male,Female'),
+            'userAddress' => array('required')
+        ]);
+
+        $pos = strpos(strtoupper($req->userAddress), 'STREET');
+
         if($validate->fails()){
-            return redirect()->back()->withErrors($validate);
-        }else{
-            $newUser = new User();
-            $newUser -> name = $req->username;
-            $newUser -> email = $req->useremail;
-            $newUser -> password = $req->userpassword;
-            $newUser -> confirmpassword = $req->userconfirmpass;
-            $newUser -> phone = $req->userphone;
-            $newUser -> address = $req->useraddress;
-            $newUser -> gender = $req->usergender;
-            $newUser -> imageDirectory = $image->getClientOriginalname();
-            $newUser -> save();
-            return redirect('/');
+            return redirect() ->back()->withErrors($validate);
+        } else if($pos === false){
+            return redirect() ->back()->withErrors('Address must contains "street" word');
+        } else {
+            $user->name = $req->fullName;
+            $user->email = $req->userEmail;
+            $user->phone = $req->userPhone;
+            $user->gender = $req->userGender;
+            $user->address = $req->userAddress;
+            $user->save();
+            return redirect('/user');
         }
     }
 
+    public function remove($id)
+    {
+        $user = User::where('id',$id)->first();
+        $user->delete();
+        return redirect('/user');
+    }
 }

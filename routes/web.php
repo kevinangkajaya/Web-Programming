@@ -51,6 +51,11 @@ Route::get('/updatePromo/{id}', 'PromoController@redirectUpdate')->middleware(Mi
 Route::post('/updateCurrentPromo/{id}', 'PromoController@updateCurrent')->middleware(Middleware\adminAuthCheck::class);
 Route::get('/removePromo/{id}', 'PromoController@remove')->middleware(Middleware\adminAuthCheck::class);
 
+Route::get('/user', 'UserController@redirect')->middleware(Middleware\adminAuthCheck::class);
+Route::get('/updateUser/{id}', 'UserController@redirectUpdate')->middleware(Middleware\adminAuthCheck::class);
+Route::post('/updateCurrentUser/{id}', 'UserController@updateCurrent')->middleware(Middleware\adminAuthCheck::class);
+Route::get('/removeUser/{id}', 'UserController@remove')->middleware(Middleware\adminAuthCheck::class);
+
 Route::get('/historyPage','TransactionController@historyPage')->middleware(Middleware\adminAuthCheck::class);
 
 Route::get('logout','UserController@logout');
