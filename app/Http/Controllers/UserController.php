@@ -151,15 +151,15 @@ class UserController extends Controller
     }
 
     public function updateCurrent(Request $req,$id){
-        $email = Session::get('email');
-        $user = User::where('email',$email)->first();
+        $user = User::where('id',$id)->first();
 
         $validate = Validator::make($req->all(),[
             'fullName' => 'required',
             'userEmail' => array('required','email','unique:users,email,'.$user->id),
             'userPhone' => array('required','digits_between:11,12'),
             'userGender' => array('required','in:Male,Female'),
-            'userAddress' => array('required')
+            'userAddress' => array('required'),
+            'userPfp' => array('image','max:5000')
         ]);
 
         $pos = strpos(strtoupper($req->userAddress), 'STREET');
@@ -174,6 +174,11 @@ class UserController extends Controller
             $user->phone = $req->userPhone;
             $user->gender = $req->userGender;
             $user->address = $req->userAddress;
+            if($req->has('userPfp')){
+                $image = $req->userPfp;  
+                $image->move('images/pfp', $image->getClientOriginalname());
+                $user->pfp = $image->getClientOriginalname();
+            }
             $user->save();
             return redirect('/user');
         }

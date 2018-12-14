@@ -31,6 +31,8 @@
         <p class="labels">Address </p>
         <textarea rows="3" type="text" name="userAddress" placeholder="Address">{{$user->address}}</textarea><br>
 
+        <input type="file" name="userPfp"><br>
+        
         <input type="submit" value="Update">
     </form>
     <script>
