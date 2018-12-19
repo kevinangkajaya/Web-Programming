@@ -33,7 +33,12 @@
                 <hr>
                 <div class="details">
                     <p>Transaction ID: {{$head->id}} </p>
-                    <p>Buyer: {{$head->users->name}} </p>
+                    <p>
+                        Buyer: 
+                            @if(($head->users) != null) {{$head->users->name}}
+                            @else Deleted user
+                            @endif
+                    </p>
                     <p>Buy Date: {{$head->date}} </p>
                 </div>
                 <table>
