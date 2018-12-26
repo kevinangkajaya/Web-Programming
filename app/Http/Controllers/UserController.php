@@ -28,8 +28,8 @@ class UserController extends Controller
                 Session::put("email",$data->email);
                 Session::put("isLogin",TRUE);
                 if($request->has('checkbox')){
-                    Cookie::queue("email",$request->email,3600);
-                    Cookie::queue("password",$request->password,3600);
+                    Cookie::queue("email",$request->email,60);
+                    Cookie::queue("password",$request->password,60);
                 }               
                 return redirect('/cloth');
             } else{
