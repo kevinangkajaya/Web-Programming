@@ -14,6 +14,6 @@ class TransactionHeader extends Model
         return $this->belongsTo(Promo::class, 'promoID');
     }
     public function transDetail(){
-        return $this->hasMany(TransactionDetail::class);
+        return $this->hasMany(TransactionDetail::class,'transactionHeaderID');
     }
 }

@@ -52,9 +52,7 @@
                     </thead>
 
                     <tbody>
-                    @if(count($transDetail)!=0)
-                        @foreach($transDetail as $detail)
-                            @if($head->id == $detail->transactionHeaderID)
+                        @foreach($head->transDetail as $detail)
                                 @php($total += ($detail->clothes->clothPrice*$detail->qty))
                                 <tr>
                                     <td><img src="/images/clothing/{{$detail->clothes->clothDirectory}}"></td>
@@ -62,9 +60,7 @@
                                     <td>{{$detail->qty}}</td>
                                     <td>Rp{{number_format ($detail->clothes->clothPrice*$detail->qty,0,',','.')}}</td>                                    
                                 </tr>
-                            @endif
                         @endforeach
-                    @endif                    
                     </tbody>
                 </table>
                 <div class="details"> 
