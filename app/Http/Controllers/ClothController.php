@@ -11,7 +11,11 @@ class ClothController extends Controller
 {
     public function redirect(Request $request){
         $query = $request->get('name');
-        $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->paginate(8);
+        $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')
+        ->orWhere('clothDescription', 'LIKE', '%'.$query.'%')
+        ->orWhereHas('categories',function($c) use ($query){
+            $c->where('categoryName','LIKE', '%'.$query.'%');
+        })->paginate(8);
         // $cloth = Cloth::where('clothName', 'LIKE', '%'.$query.'%')->with('categories')->orWhere('clothDescription', 'LIKE', '%'.$query.'%')->with('categories')->paginate(8);
         $cloth->appends($request->only('name'));
 
